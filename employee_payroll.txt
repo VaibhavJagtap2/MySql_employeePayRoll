@@ -133,3 +133,64 @@ mysql> SELECT * FROM employee_payroll;
 |  3 | Charlie | M      | 300000 | 2020-05-21 |
 +----+---------+--------+--------+------------+
 3 rows in set (0.00 sec)
+
+UC7:
+update employee_payroll set salary = 200000 where name = 'Terisa';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> SELECT * FROM employee_payroll;
++----+---------+--------+--------+------------+
+| id | name    | gender | salary | start      |
++----+---------+--------+--------+------------+
+|  1 | Bill    | M      | 100000 | 2018-01-03 |
+|  2 | Terisa  | F      | 200000 | 2019-11-13 |
+|  3 | Charlie | M      | 300000 | 2020-05-21 |
++----+---------+--------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT AVG(salary) FROM emplyee_payroll WHERE gender = 'M' GROUP BY gender;
+ERROR 1146 (42S02): Table 'payroll_service.emplyee_payroll' doesn't exist
+mysql> SELECT AVG(salary) FROM employee_payroll WHERE gender = 'M' GROUP BY gender;
++-------------+
+| AVG(salary) |
++-------------+
+|      200000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AVG(salary) FROM employee_payroll GROUP BY gender;
++-------------+
+| AVG(salary) |
++-------------+
+|      200000 |
+|      200000 |
++-------------+
+2 rows in set (0.05 sec)
+
+mysql> SELECT gender, AVG(salary) FROM employee_payroll GROUP BY gender;
++--------+-------------+
+| gender | AVG(salary) |
++--------+-------------+
+| M      |      200000 |
+| F      |      200000 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT gender, COUNT(name) FROM employee_payroll GROUP BY gender;
++--------+-------------+
+| gender | COUNT(name) |
++--------+-------------+
+| M      |           2 |
+| F      |           1 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT gender, SUM(salary) FROM employee_payroll GROUP BY gender;
++--------+-------------+
+| gender | SUM(salary) |
++--------+-------------+
+| M      |      400000 |
+| F      |      200000 |
++--------+-------------+
+2 rows
