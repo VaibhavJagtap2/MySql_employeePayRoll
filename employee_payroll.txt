@@ -23,3 +23,24 @@ mysql> SELECT DATABASE();
 | payroll_service |
 +-----------------+
 1 row in set (0.00 sec)
+UC2:
+CREATE TABLE employee_payroll
+    -> (
+    -> id               Int unsigned NOT NULL AUTO_INCREMENT,     #Unique ID for the record
+    -> name             VARCHAR(150) NOT NULL,                    #Name of the Employee
+    -> salary           Double NOT NULL,                          #Employee Salary
+    -> start            DATE NOT NULL,                            #Employee Start Date
+    -> PRIMARY KEY      (id)                                      #Make id primary key
+    -> );
+Query OK, 0 rows affected (2.08 sec)
+
+mysql> DESCRIBE employee_payroll;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int unsigned | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(150) | NO   |     | NULL    |                |
+| salary | double       | NO   |     | NULL    |                |
+| start  | date         | NO   |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+4 rows in set (0.22 sec)
